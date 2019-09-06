@@ -1,10 +1,12 @@
 <% @tasks.each do |task| %>
     <%= link_to '[x]',
-        task_path(task),
+        user_task_path(task.user, task),
         method: :delete,
         data: { confirm: 'Sure?' } %>
     <br>
-    <%= link_to task.title, task_path(task) %>
+    <%= task.user.name %>
+    <br>
+    <%= link_to task.title, user_task_path(task.user, task) %>
     <br>
     <%= task.body %> 
     <br>

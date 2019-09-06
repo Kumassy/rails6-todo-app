@@ -1,7 +1,12 @@
 class TasksController < ApplicationController
 
     def index
-        @tasks = Task.all
+        @user = User.find_by(id: params[:user_id])
+        @tasks = if @user then
+            @user.tasks
+        else
+            Task.all
+        end
 
         respond_to do |format|
             format.html 
@@ -10,7 +15,8 @@ class TasksController < ApplicationController
     end
 
     def show
-        @task = Task.find(params[:id])
+        @user = User.find(params[:user_id])
+        @task = @user.tasks.find(params[:id])
 
         respond_to do |format|
             format.html 
@@ -19,8 +25,10 @@ class TasksController < ApplicationController
     end
 
     def destroy
-        @task = Task.find(params[:id])
+        @user = User.find(params[:user_id])
+        @task = @user.tasks.find(params[:id])
+
         @task.destroy
-        redirect_to tasks_path
+        redirect_to user_tasks_path @user
     end
 end
