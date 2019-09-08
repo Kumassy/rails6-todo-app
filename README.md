@@ -1,34 +1,21 @@
-# README
+# rails6-todo-app
+Rails6 で遊んでみた
+
+## ユーザー認証
+omniauth を使う。OAuth 以外でユーザーを作成することはしないので、 devise と組み合わせることはしなくてよい
 
 see:
 https://qiita.com/white0221/items/19d18a4e494c4cb68dae#direnv
 
+## credentials
+シークレットは dotenv とか環境変数でもたせるのではなく、 credentials を使う
+
+```
+$ EDITOR="vim" bin/rails credentials:edit
+```
+
+とかする
 
 
-## TODO
-- README
-- webpacker react
-- task references user_id
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Webpacker
+普通に `yarn` が使えていい感じに React がかける。 props の受け渡しはどうしよう...
